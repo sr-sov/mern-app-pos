@@ -13,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 /* MONGOOSE SETUP */
 mongoose.set("strictQuery", false);
 

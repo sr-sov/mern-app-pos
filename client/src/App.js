@@ -7,10 +7,18 @@ function App() {
 
   const [toDos, setToDos] = useState([]);
   const [text, setText] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [toDoId, setToDoId] = useState("")
 
   useEffect(() => {
     getAllToDo(setToDos)
   }, [])
+
+  const updateMode = (_id, text) => {
+    setIsUpdating(true)
+    setText(text)
+    setToDoId(_id)
+  }
 
   return (
     <div className="App">
@@ -25,8 +33,11 @@ function App() {
           value={text}
           onChange={(e) =>setText(e.target.value)}
           />
-          <div className="buttonContainer" onClick={() => addToDo(text, setText, setToDos)}>
-            <label>Add</label>
+          <div className="buttonContainer" onClick={isUpdating ? 
+            () => updateToDo(toDoId, text, setToDos, setText, setIsUpdating) 
+            : () => addToDo(text, setText, setToDos)}>
+            {isUpdating ? "Update" : "Add"}
+            
           </div>
         </div>
         
@@ -35,8 +46,8 @@ function App() {
           <ToDoCard 
           key={toDo._id} 
           text={toDo.text} 
-          updateMode={updateToDo}
-          deleteToDo={deleteToDo}
+          updateMode = {() => updateMode(toDo._id, toDo.text)}
+          deleteToDo = {() => deleteToDo(toDo._id, setToDos)}
           />
           )}
         </div>

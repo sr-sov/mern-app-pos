@@ -43,7 +43,7 @@ export const updateTodo = async (req, res) => {
 
 export const deleteTodo = async (req, res) => {
     try{
-        const { _id, text } = req.body
+        const { _id } = req.body
         Todo.findByIdAndDelete({_id})
         .then((data) => {
             console.log("Deleted successfully...");

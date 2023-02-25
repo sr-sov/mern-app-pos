@@ -40,7 +40,7 @@ export const updateToDo = (toDoId, text, setToDo, setText, setIsUpdating) => {
 export const deleteToDo = (_id, setToDo) => {
 
     axios
-        .post(`${baseURL}/delete`, { _id })
+        .delete(`${baseURL}/delete`, { data:{_id} })
         .then((data) => {
             console.log(data)
             getAllToDo(setToDo)
