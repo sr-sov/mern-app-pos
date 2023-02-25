@@ -43,13 +43,13 @@ export const updateItem = (ItemId, itemName, price, description, setItemName, se
 
 }
 
-export const deleteItem = (_id, setItem) => {
+export const deleteItem = (_id, setItems) => {
 
     axios
         .delete(`${baseURL}/delete`, { data:{_id} })
         .then((data) => {
             console.log(data)
-            getAllItem(setItem)
+            getAllItem(setItems)
         })
         .catch((err) => console.log(err))
 
