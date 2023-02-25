@@ -1,0 +1,11 @@
+GET http://localhost:3001/
+
+###
+POST http://localhost:3001/save
+Content-Type: application/json
+
+{
+    "text": "Buy milk"
+}
+###
+DELETE htpp://localhost:30001/deleteAll
