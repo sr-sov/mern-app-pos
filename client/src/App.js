@@ -16,9 +16,11 @@ function App() {
     getAllItem(setItems)
   }, [])
 
-  const updateMode = (_id, itemName) => {
+  const updateMode = (_id, itemName, price, description) => {
     setIsUpdating(true)
     setItemName(itemName)
+    setPrice(price)
+    setDescription(description)
     setItemId(_id)
   }
 

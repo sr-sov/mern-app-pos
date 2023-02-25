@@ -31,9 +31,11 @@ export const addItem = (itemName, price, description, setItemName, setPrice, set
 export const updateItem = (ItemId, itemName, price, description, setItemName, setPrice, setDescription, setItems, setIsUpdating) => {
 
     axios
-        .post(`${baseURL}/update`, { _id: ItemId, itemName })
+        .post(`${baseURL}/update`, { _id: ItemId, itemName, price, description })
         .then((data) => {
             setItemName("")
+            setPrice("")
+            setDescription("")
             setIsUpdating(false)
             getAllItem(setItems)
         })
