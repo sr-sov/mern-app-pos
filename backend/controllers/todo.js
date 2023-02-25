@@ -29,7 +29,7 @@ export const saveTodo = async (req, res) => {
 export const updateTodo = async (req, res) => {
     try{
         const { _id, text } = req.body
-        Todo.findByIdAndUpdate({_id, {text}})
+        Todo.findByIdAndUpdate({_id}, {text})
         .then((data) => {
             console.log("Updated successfully...");
             console.log(data);

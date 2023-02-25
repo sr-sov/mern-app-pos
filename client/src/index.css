@@ -20,7 +20,9 @@ code {
 .container{
   max-width: 600px;
   margin: auto;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
+  background-color:ghostwhite;
+  border: #000 1px solid;
 }
 
 h1{
@@ -40,14 +42,14 @@ input{
   outline: none;
   width: 400px;
   padding: 0.5rem;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #FFF;
 }
 
 
 .toDoCard{
   position: relative;
   margin-top: 1rem;
-  background-color: #000;
+  background-color:darkslategray ;
   color: #fff;
   padding: 1.5rem 3rem;
   border-radius: 5px;

@@ -1,13 +1,17 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+
 import cors from "cors";
 
 import todoRoute from "./routes/todo.js";
 
 dotenv.config();
 
+
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 /* MONGOOSE SETUP */
 mongoose.set("strictQuery", false);
@@ -20,5 +24,5 @@ mongoose.connect(process.env.MONGO_URL, {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`))
 }).catch((error) => console.log(`${error} did not connect`)) 
 
-app.use(express.json())
+
 app.use(todoRoute);
