@@ -1,10 +1,10 @@
-import Todo from "../models/Todo.js";
+import Item from "../models/Item.js";
 
 /* READ */
-export const getTodo = async (req, res) => {
+export const getItem = async (req, res) => {
     try {
-        const todo = await Todo.find();
-        res.send(todo);
+        const item = await Item.find();
+        res.send(item);
     } catch (err) {
         res.status(404).json({ message: err.message});
     }
@@ -12,10 +12,10 @@ export const getTodo = async (req, res) => {
 
 /* CREATE */
 
-export const saveTodo = async (req, res) => {
+export const saveItem = async (req, res) => {
     try{
-        const { text } = req.body
-        Todo.create({text}).then((data) => {
+        const { itemName, price, description } = req.body
+        Item.create({itemName, price, description}).then((data) => {
             console.log("Added successfully...");
             console.log(data);
             res.send(data);
@@ -26,10 +26,11 @@ export const saveTodo = async (req, res) => {
     }
 }
 
-export const updateTodo = async (req, res) => {
+/* UPDATE */
+export const updateItem = async (req, res) => {
     try{
-        const { _id, text } = req.body
-        Todo.findByIdAndUpdate({_id}, {text})
+        const { _id, itemName, price, description } = req.body
+        Item.findByIdAndUpdate({_id}, {itemName, price, description})
         .then((data) => {
             console.log("Updated successfully...");
             console.log(data);
@@ -41,10 +42,11 @@ export const updateTodo = async (req, res) => {
     }
 }
 
-export const deleteTodo = async (req, res) => {
+/* DELETE */
+export const deleteItem = async (req, res) => {
     try{
         const { _id } = req.body
-        Todo.findByIdAndDelete({_id})
+        Item.findByIdAndDelete({_id})
         .then((data) => {
             console.log("Deleted successfully...");
             console.log(data);
@@ -56,9 +58,9 @@ export const deleteTodo = async (req, res) => {
     }
 }
 
-export const clearTodo = async (req, res) => {
+export const clearItem = async (req, res) => {
     try{
-        Todo.deleteMany({}).then((data) => {
+        Item.deleteMany({}).then((data) => {
             console.log("Removed all data...");
             console.log(data);
             res.send(data);

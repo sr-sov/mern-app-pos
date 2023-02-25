@@ -1,53 +1,72 @@
 import { useEffect, useState } from "react";
-import ToDoCard from "./components/ToDoCard";
+import ItemCard from "./components/ItemCard";
 import "./index.css";
-import { addToDo, deleteToDo, getAllToDo, updateToDo } from "./utils/HandleApi";
+import { addItem, deleteItem, getAllItem, updateItem } from "./utils/HandleApi_Item";
 
 function App() {
 
-  const [toDos, setToDos] = useState([]);
-  const [text, setText] = useState("");
+  const [items, setItems] = useState([]);
+  const [itemName, setItemName] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
-  const [toDoId, setToDoId] = useState("")
+  const [ItemId, setItemId] = useState("")
 
   useEffect(() => {
-    getAllToDo(setToDos)
+    getAllItem(setItems)
   }, [])
 
-  const updateMode = (_id, text) => {
+  const updateMode = (_id, itemName) => {
     setIsUpdating(true)
-    setText(text)
-    setToDoId(_id)
+    setItemName(itemName)
+    setItemId(_id)
   }
 
   return (
     <div className="App">
 
       <div className="container">
-        <h1> To Do List</h1>
+        <h1>Item List</h1>
 
         <div className="top">
           <input 
           type="text" 
-          placeholder="New task..."
-          value={text}
-          onChange={(e) =>setText(e.target.value)}
+          placeholder="New item..."
+          value={itemName}
+          onChange={(e) =>setItemName(e.target.value)}
           />
-          <div className="buttonContainer" onClick={isUpdating ? 
-            () => updateToDo(toDoId, text, setToDos, setText, setIsUpdating) 
-            : () => addToDo(text, setText, setToDos)}>
+          <input 
+          type="number" 
+          placeholder="$$"
+          value={price}
+          onChange={(e) =>setPrice(e.target.value)}
+          />
+        </div>
+
+        <div className="top">
+            <input 
+            type="text" 
+            placeholder="Description..."
+            value={description}
+            onChange={(e) =>setDescription(e.target.value)}
+            />
+            <div className="buttonContainer" onClick={isUpdating ? 
+            () => updateItem(ItemId, itemName, price, description, setItemName, setPrice, setDescription, setItems, setIsUpdating) 
+            : () => addItem(itemName, price, description, setItemName, setPrice, setDescription, setItems)}>
             {isUpdating ? "Update" : "Add"}
             
           </div>
         </div>
         
         <div className="List">
-          {toDos.map((toDo) => 
-          <ToDoCard 
-          key={toDo._id} 
-          text={toDo.text} 
-          updateMode = {() => updateMode(toDo._id, toDo.text)}
-          deleteToDo = {() => deleteToDo(toDo._id, setToDos)}
+          {items.map((item) => 
+          <ItemCard 
+          key={item._id} 
+          itemName={item.itemName} 
+          price={item.price}
+          description={item.description}
+          updateMode = {() => updateMode(item._id, item.itemName, item.price, item.description)}
+          deleteItem = {() => deleteItem(item._id, setItems)}
           />
           )}
         </div>
