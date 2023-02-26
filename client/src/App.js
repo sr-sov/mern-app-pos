@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ItemCard from "./components/ItemCard";
 import "./index.css";
 import { addItem, deleteItem, getAllItem, updateItem } from "./utils/HandleApi_Item";
+import { Box, Container, TextField, Typography } from "@mui/material";
 
 function App() {
 
@@ -25,25 +26,34 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <Container sx={{bgcolor: '', height: "100vh"}}>
+        <Typography 
+        variant="h1"
+        sx={{
+          my: 4, textAlign: "center", color: {xs:"primary.main", sm:"secondary.main"}
+        }}
+        >Item List</Typography>
 
-      <div className="container">
-        <h1>Item List</h1>
+        <Box sx={{
+          m: 3,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          gap: 4
+        }}>
+          <TextField label="New Item" variant="outlined" sx={{
+            width: '75%'
+          }}>
 
-        <div className="top">
-          <input 
-          type="text" 
-          placeholder="New item..."
-          value={itemName}
-          onChange={(e) =>setItemName(e.target.value)}
-          />
-          <input 
-          type="number" 
-          placeholder="$$"
-          value={price}
-          onChange={(e) =>setPrice(e.target.value)}
-          />
-        </div>
+          </TextField>
+
+          <TextField label="Price" variant="outlined" sx={{
+            width: '25%'
+          }}>
+
+          </TextField>
+          
+        </Box>
 
         <div className="top">
             <input 
@@ -74,9 +84,7 @@ function App() {
         </div>
 
 
-      </div>
-
-    </div>
+</Container>
   );
 }
 
