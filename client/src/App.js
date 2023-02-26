@@ -49,65 +49,9 @@ function App() {
       </Toolbar>
     </AppBar>
     <Container  maxWidth="sm" sx = {{marginTop: "3rem"}}>
-    <Typography 
-        variant="h1"
-        sx={{
-          my: 4, 
-          textAlign: "center", 
-          color: "primary.main",
-          fontSize: {xs:"2rem", sm:"3rem"}
-        }}
-        >Item List</Typography>
-
-        <Box 
-        display="grid"
-        gridTemplateColumns="repeat(6, minmax(0, 1fr))"
-        sx={{
-          m: 3,
-          gap: 4
-        }}>
-          <TextField 
-          label="Item" 
-          variant="outlined" 
-          type="text"
-          value={itemName}
-          onChange={handleItemNameChange}
-          sx={{
-            gridColumn: "span 4"
-          }}>
-
-          </TextField>
-
-          <TextField 
-          label="Price" 
-          variant="outlined" 
-          type="number" 
-          value={price}
-          onChange={handlePriceChange}
-          sx={{
-            gridColumn: "span 2"
-          }}
-          >
-
-          </TextField>
-          
-          <TextField 
-          label="Item description here..." 
-          multiline 
-          rows={3}
-          type="text"
-          variant="outlined"
-          value={description}
-          onChange={handleDescriptionChange}
-          sx={{
-            gridColumn: "span 6"
-          }}
-          >
-
-          </TextField>
-          
-
-        </Box>
+    <ItemForm 
+    itemName={itemName} price={price} description={description} handleItemNameChange={handleItemNameChange} handlePriceChange={handlePriceChange} handleDescriptionChange={handleDescriptionChange} 
+    />
 
         <div className="top">
             <Button onClick={isUpdating ? 

@@ -8,17 +8,21 @@ const ItemCard = ({itemName, price, description, updateMode, deleteItem}) => {
   return (
     <Card>
       <CardMedia
+        sx={{ height: 140 }}
         image="https://picsum.photos/200/300"
         title="Image Title"
       />
       <CardContent>
-        <Typography>
-        {itemName} (${price}) : {description}
+        <Typography variant="h6">
+        {itemName} (${price})
+        </Typography>
+        <Typography variant="body2">
+        {description}
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="small" color="primary" onClick={updateMode}>Edit</Button>
-        <Button size="small" color="primary">Remove</Button>
+        <Button size="small" color="primary" onClick={deleteItem}>Remove</Button>
       </CardActions>
     </Card>
 
