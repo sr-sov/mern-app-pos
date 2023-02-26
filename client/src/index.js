@@ -7,27 +7,18 @@ import { createTheme, ThemeProvider } from '@mui/material';
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#013e87",
+      main: "#87CEEB",
+      darkerMain: "#eef2f6",
+      darkerText: "#166483"
     },
     secondary: {
-      main: "#2e74c9",
+      main: "#F8C8DC",
     },
-  },
-  typography: {
-    h1: {
-      fontSize: "3rem",
-      fontWeight: 600,
-    },
-    h2: {
-      fontSize: "1.75rem",
-      fontWeight: 600,
-    },
-    h3: {
-      fontSize: "1.5rem",
-      fontWeight: 600,
+    dark: {
+      main: "#166483",
     }
   }
-})
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

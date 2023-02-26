@@ -6,7 +6,10 @@ import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@
 
 const ItemCard = ({itemName, price, description, updateMode, deleteItem}) => {
   return (
-    <Card>
+    <Card sx={{
+      bgcolor: "#eef2f6",
+      my: "1rem"
+    }}>
       <CardMedia
         sx={{ height: 140 }}
         image="https://picsum.photos/200/140"
@@ -21,8 +24,8 @@ const ItemCard = ({itemName, price, description, updateMode, deleteItem}) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary" onClick={updateMode}>Edit</Button>
-        <Button size="small" color="primary" onClick={deleteItem}>Remove</Button>
+        <Button size="small" color="dark" onClick={updateMode}>Edit</Button>
+        <Button size="small" color="dark" onClick={deleteItem}>Remove</Button>
       </CardActions>
     </Card>
 
