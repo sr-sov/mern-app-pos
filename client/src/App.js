@@ -16,7 +16,7 @@ function App() {
   const [description, setDescription] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [ItemId, setItemId] = useState("");
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
 
   useEffect(() => {
     getAllItem(setItems)
