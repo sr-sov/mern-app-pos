@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import ItemCard from "./components/ItemCard";
 import "./index.css";
 import { addItem, deleteItem, getAllItem, updateItem } from "./utils/HandleApi_Item";
-import { Box, Container, TextField, Typography } from "@mui/material";
+import { Box, Container, TextField, Typography, withTheme } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
 
 function App() {
 
@@ -34,39 +36,62 @@ function App() {
         }}
         >Item List</Typography>
 
-        <Box sx={{
+        <Box 
+        display="grid"
+        gridTemplateColumns="repeat(6, minmax(0, 1fr))"
+        sx={{
           m: 3,
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
           gap: 4
         }}>
-          <TextField label="New Item" variant="outlined" sx={{
-            width: '75%'
+          <TextField 
+          label="Item" 
+          variant="outlined" 
+          type="text"
+          value={itemName}
+          sx={{
+            gridColumn: "span 4"
           }}>
 
           </TextField>
 
-          <TextField label="Price" variant="outlined" sx={{
-            width: '25%'
-          }}>
+          <TextField 
+          label="Price" 
+          variant="outlined" 
+          type="number" 
+          value={price}
+          sx={{
+            gridColumn: "span 2"
+          }}
+          >
 
           </TextField>
           
+          <TextField 
+          label="Item description here..." 
+          multiline 
+          rows={3}
+          type="text"
+          variant="outlined"
+          value={description}
+          sx={{
+            gridColumn: "span 6"
+          }}
+          >
+
+          </TextField>
+          
+
         </Box>
 
         <div className="top">
-            <input 
-            type="text" 
-            placeholder="Description..."
-            value={description}
-            onChange={(e) =>setDescription(e.target.value)}
-            />
             <div className="buttonContainer" onClick={isUpdating ? 
             () => updateItem(ItemId, itemName, price, description, setItemName, setPrice, setDescription, setItems, setIsUpdating) 
             : () => addItem(itemName, price, description, setItemName, setPrice, setDescription, setItems)}>
-            {isUpdating ? "Update" : "Add"}
-            
+            {isUpdating ? 
+            <EditIcon />
+            :
+            <AddIcon />
+            }
           </div>
         </div>
         
