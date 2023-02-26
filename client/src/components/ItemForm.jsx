@@ -28,6 +28,7 @@ export const ItemForm = ({itemName, price, description, handleItemNameChange, ha
           variant="outlined" 
           type="text"
           value={itemName}
+          onChange={handleItemNameChange}
           sx={{
             gridColumn: "span 4"
           }}>
@@ -39,6 +40,7 @@ export const ItemForm = ({itemName, price, description, handleItemNameChange, ha
           variant="outlined" 
           type="number" 
           value={price}
+          onChange={handlePriceChange}
           sx={{
             gridColumn: "span 2"
           }}
@@ -53,6 +55,7 @@ export const ItemForm = ({itemName, price, description, handleItemNameChange, ha
           type="text"
           variant="outlined"
           value={description}
+          onChange={handleDescriptionChange}
           sx={{
             gridColumn: "span 6"
           }}
@@ -60,7 +63,6 @@ export const ItemForm = ({itemName, price, description, handleItemNameChange, ha
 
           </TextField>
           
-
         </Box>
         </>
     )

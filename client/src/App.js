@@ -15,7 +15,8 @@ function App() {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
-  const [ItemId, setItemId] = useState("")
+  const [ItemId, setItemId] = useState("");
+  const [isLogged, setIsLogged] = useState(true);
 
   useEffect(() => {
     getAllItem(setItems)
@@ -48,12 +49,17 @@ function App() {
         <Typography variant="h6">Inventory</Typography>
       </Toolbar>
     </AppBar>
-    <Container  maxWidth="sm" sx = {{marginTop: "3rem"}}>
-    <ItemForm 
-    itemName={itemName} price={price} description={description} handleItemNameChange={handleItemNameChange} handlePriceChange={handlePriceChange} handleDescriptionChange={handleDescriptionChange} 
-    />
 
-        <div className="top">
+    <Container  maxWidth="sm" sx = {{marginTop: "3rem"}}>
+
+    {isLogged ? 
+
+      <>
+      <ItemForm 
+      itemName={itemName} price={price} description={description} handleItemNameChange={handleItemNameChange} handlePriceChange={handlePriceChange} handleDescriptionChange={handleDescriptionChange} 
+      />
+
+      <div className="top">
             <Button onClick={isUpdating ? 
             () => updateItem(ItemId, itemName, price, description, setItemName, setPrice, setDescription, setItems, setIsUpdating) 
             : () => addItem(itemName, price, description, setItemName, setPrice, setDescription, setItems)}>
@@ -77,9 +83,18 @@ function App() {
           />
           )}
         </div>
+      </>  
+      
+      :
+      
+      <>
+      <Typography variant="h1">Login</Typography>
+      </>
+      
+      }
 
 
-  </Container>
+    </Container>
   </>
   );
 }
