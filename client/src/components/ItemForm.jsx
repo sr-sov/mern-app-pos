@@ -60,7 +60,6 @@ export const ItemForm = ({itemName, price, description, handleItemNameChange, ha
 
           </TextField>
           
-
         </Box>
         </>
     )

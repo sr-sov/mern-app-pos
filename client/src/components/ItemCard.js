@@ -9,7 +9,7 @@ const ItemCard = ({itemName, price, description, updateMode, deleteItem}) => {
     <Card>
       <CardMedia
         sx={{ height: 140 }}
-        image="https://picsum.photos/200/300"
+        image="https://picsum.photos/200/140"
         title="Image Title"
       />
       <CardContent>
