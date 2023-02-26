@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 import cors from "cors";
 
-import todoRoute from "./routes/todo.js";
+import itemRoute from "./routes/item.js";
 
 dotenv.config();
 
@@ -26,4 +26,4 @@ mongoose.connect(process.env.MONGO_URL, {
 }).catch((error) => console.log(`${error} did not connect`)) 
 
 
-app.use(todoRoute);
+app.use(itemRoute);

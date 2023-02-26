@@ -1,61 +1,86 @@
 import { useEffect, useState } from "react";
-import ToDoCard from "./components/ToDoCard";
+import ItemCard from "./components/ItemCard";
 import "./index.css";
-import { addToDo, deleteToDo, getAllToDo, updateToDo } from "./utils/HandleApi";
+import { addItem, deleteItem, getAllItem, updateItem } from "./utils/HandleApi_Item";
+import { AppBar, Box, Button, Container, CssBaseline, TextField, Toolbar, Typography, withTheme } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import { ItemForm } from "./components/ItemForm";
 
 function App() {
 
-  const [toDos, setToDos] = useState([]);
-  const [text, setText] = useState("");
+  const [items, setItems] = useState([]);
+  const [itemName, setItemName] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
-  const [toDoId, setToDoId] = useState("")
+  const [ItemId, setItemId] = useState("")
 
   useEffect(() => {
-    getAllToDo(setToDos)
+    getAllItem(setItems)
   }, [])
 
-  const updateMode = (_id, text) => {
+  const handleItemNameChange = event => {
+    setItemName(event.target.value);
+  };
+  const handlePriceChange = event => {
+    setPrice(event.target.value);
+  };
+  const handleDescriptionChange = event => {
+    setDescription(event.target.value);
+  };
+
+  const updateMode = (_id, itemName, price, description) => {
     setIsUpdating(true)
-    setText(text)
-    setToDoId(_id)
+    setItemName(itemName)
+    setPrice(price)
+    setDescription(description)
+    setItemId(_id)
   }
 
   return (
-    <div className="App">
-
-      <div className="container">
-        <h1> To Do List</h1>
+    <>
+    <CssBaseline />
+    <AppBar position="relative">
+      <Toolbar>
+        <ListAltIcon />
+        <Typography variant="h6">Inventory</Typography>
+      </Toolbar>
+    </AppBar>
+    <Container  maxWidth="sm" sx = {{marginTop: "3rem"}}>
+    <ItemForm 
+    itemName={itemName} price={price} description={description} handleItemNameChange={handleItemNameChange} handlePriceChange={handlePriceChange} handleDescriptionChange={handleDescriptionChange} 
+    />
 
         <div className="top">
-          <input 
-          type="text" 
-          placeholder="New task..."
-          value={text}
-          onChange={(e) =>setText(e.target.value)}
-          />
-          <div className="buttonContainer" onClick={isUpdating ? 
-            () => updateToDo(toDoId, text, setToDos, setText, setIsUpdating) 
-            : () => addToDo(text, setText, setToDos)}>
-            {isUpdating ? "Update" : "Add"}
-            
-          </div>
+            <Button onClick={isUpdating ? 
+            () => updateItem(ItemId, itemName, price, description, setItemName, setPrice, setDescription, setItems, setIsUpdating) 
+            : () => addItem(itemName, price, description, setItemName, setPrice, setDescription, setItems)}>
+            {isUpdating ? 
+            <EditIcon />
+            :
+            <AddIcon />
+            }
+          </Button>
         </div>
         
         <div className="List">
-          {toDos.map((toDo) => 
-          <ToDoCard 
-          key={toDo._id} 
-          text={toDo.text} 
-          updateMode = {() => updateMode(toDo._id, toDo.text)}
-          deleteToDo = {() => deleteToDo(toDo._id, setToDos)}
+          {items.map((item) => 
+          <ItemCard 
+          key={item._id} 
+          itemName={item.itemName} 
+          price={item.price}
+          description={item.description}
+          updateMode = {() => updateMode(item._id, item.itemName, item.price, item.description)}
+          deleteItem = {() => deleteItem(item._id, setItems)}
           />
           )}
         </div>
 
 
-      </div>
-
-    </div>
+  </Container>
+  </>
   );
 }
 
