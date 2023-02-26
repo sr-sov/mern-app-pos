@@ -50,7 +50,10 @@ function App() {
       </Toolbar>
     </AppBar>
 
-    <Container  maxWidth="sm" sx = {{marginTop: "3rem"}}>
+    <Container  maxWidth="sm" 
+    sx = {{
+      py: "1rem"
+      }}>
 
     {isLogged ? 
 
