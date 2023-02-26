@@ -6,4 +6,4 @@
 API handling
 
 ## Material UI
-npm i @mui/material @emotion/react @emotion/styled
+npm i @mui/material @mui/icons-material @emotion/react @emotion/styled

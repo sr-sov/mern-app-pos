@@ -2,16 +2,26 @@ import React from 'react'
 
 import {BiEdit} from "react-icons/bi"
 import {AiFillDelete} from "react-icons/ai"
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 
 const ItemCard = ({itemName, price, description, updateMode, deleteItem}) => {
   return (
-    <div className='toDoCard'>
-        <div className='itemName'>{itemName} (${price}) : {description}</div>
-        <div className='icons'>
-          <BiEdit className='icon' onClick={updateMode} />
-          <AiFillDelete className='icon' onClick={deleteItem} />
-        </div>
-    </div>
+    <Card>
+      <CardMedia
+        image="https://picsum.photos/200/300"
+        title="Image Title"
+      />
+      <CardContent>
+        <Typography>
+        {itemName} (${price}) : {description}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small" color="primary" onClick={updateMode}>Edit</Button>
+        <Button size="small" color="primary">Remove</Button>
+      </CardActions>
+    </Card>
+
   )
 }
 
