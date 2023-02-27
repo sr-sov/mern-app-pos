@@ -17,7 +17,7 @@ const ItemCard = ({itemName, price, stock, description, updateMode, deleteItem})
       />
       <CardContent>
         <Typography variant="h6">
-        {itemName} (${price}) {stock}
+        {itemName} (${price}) : ({stock}) items left!
         </Typography>
         <Typography variant="body2">
         {description}
