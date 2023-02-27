@@ -11,16 +11,17 @@ export const getAllItem = (setItem) => {
         })
 }
 
-export const addItem = (itemName, price, description, setItemName, setPrice, setDescription, setItems) => {
+export const addItem = (itemName, price, stock, description, setItemName, setPrice, setStock, setDescription, setItems) => {
 
     axios
-        .post(`${baseURL}/save`, { itemName: itemName, price: price, description: description })
+        .post(`${baseURL}/save`, { itemName: itemName, price: price, stock: stock, description: description })
         .then((data) => {
             console.log(data);
             //reset form
             setItemName("");
             setPrice("");
             setDescription("");
+            setStock("");
             //update items state
             getAllItem(setItems)
         })
@@ -28,13 +29,13 @@ export const addItem = (itemName, price, description, setItemName, setPrice, set
 
 }
 
-export const updateItem = (ItemId, itemName, price, description, setItemName, setPrice, setDescription, setItems, setIsUpdating) => {
-
+export const updateItem = (ItemId, itemName, price, stock, description, setItemName, setPrice, setStock, setDescription, setItems, setIsUpdating) => {
     axios
-        .post(`${baseURL}/update`, { _id: ItemId, itemName, price, description })
+        .post(`${baseURL}/update`, { _id: ItemId, itemName, price, stock, description })
         .then((data) => {
             setItemName("")
             setPrice("")
+            setStock("")
             setDescription("")
             setIsUpdating(false)
             getAllItem(setItems)

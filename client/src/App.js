@@ -13,6 +13,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [itemName, setItemName] = useState("");
   const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
   const [description, setDescription] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [ItemId, setItemId] = useState("");
@@ -28,14 +29,18 @@ function App() {
   const handlePriceChange = event => {
     setPrice(event.target.value);
   };
+  const handleStockChange = event => {
+    setStock(event.target.value);
+  };
   const handleDescriptionChange = event => {
     setDescription(event.target.value);
   };
 
-  const updateMode = (_id, itemName, price, description) => {
+  const updateMode = (_id, itemName, price, stock, description) => {
     setIsUpdating(true)
     setItemName(itemName)
     setPrice(price)
+    setStock(stock)
     setDescription(description)
     setItemId(_id)
   }
@@ -59,13 +64,13 @@ function App() {
 
       <>
       <ItemForm 
-      itemName={itemName} price={price} description={description} handleItemNameChange={handleItemNameChange} handlePriceChange={handlePriceChange} handleDescriptionChange={handleDescriptionChange} 
+      itemName={itemName} price={price} stock={stock} description={description}handleItemNameChange={handleItemNameChange} handlePriceChange={handlePriceChange} handleStockChange={handleStockChange} handleDescriptionChange={handleDescriptionChange} 
       />
 
       <div className="top">
             <Button onClick={isUpdating ? 
-            () => updateItem(ItemId, itemName, price, description, setItemName, setPrice, setDescription, setItems, setIsUpdating) 
-            : () => addItem(itemName, price, description, setItemName, setPrice, setDescription, setItems)}>
+            () => updateItem(ItemId, itemName, price, stock, description, setItemName, setPrice, setStock, setDescription, setItems, setIsUpdating) 
+            : () => addItem(itemName, price, stock, description, setItemName, setPrice, setStock, setDescription, setItems)}>
             {isUpdating ? 
             <EditIcon />
             :
@@ -81,7 +86,8 @@ function App() {
           itemName={item.itemName} 
           price={item.price}
           description={item.description}
-          updateMode = {() => updateMode(item._id, item.itemName, item.price, item.description)}
+          stock={item.stock}
+          updateMode = {() => updateMode(item._id, item.itemName, item.price, item.stock, item.description)}
           deleteItem = {() => deleteItem(item._id, setItems)}
           />
           )}
