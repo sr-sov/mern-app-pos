@@ -2,8 +2,9 @@ import { AppBar, Box, Container, CssBaseline, TextField, Toolbar, Typography, wi
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import { AiOutlineStock } from "react-icons/ai";
 
-export const ItemForm = ({itemName, price, description, handleItemNameChange, handlePriceChange, handleDescriptionChange}) => {
+export const ItemForm = ({itemName, price, stock, description, handleItemNameChange, handlePriceChange, handleStockChange, handleDescriptionChange}) => {
     return (
         <>
         <Typography 
@@ -30,7 +31,7 @@ export const ItemForm = ({itemName, price, description, handleItemNameChange, ha
           value={itemName}
           onChange={handleItemNameChange}
           sx={{
-            gridColumn: "span 4"
+            gridColumn: "span 6"
           }}>
 
           </TextField>
@@ -42,7 +43,20 @@ export const ItemForm = ({itemName, price, description, handleItemNameChange, ha
           value={price}
           onChange={handlePriceChange}
           sx={{
-            gridColumn: "span 2"
+            gridColumn: "span 3"
+          }}
+          >
+
+          </TextField>
+
+          <TextField 
+          label="Stock" 
+          variant="outlined" 
+          type="number" 
+          value={stock}
+          onChange={handleStockChange}
+          sx={{
+            gridColumn: "span 3"
           }}
           >
 

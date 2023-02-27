@@ -4,7 +4,7 @@ import {BiEdit} from "react-icons/bi"
 import {AiFillDelete} from "react-icons/ai"
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 
-const ItemCard = ({itemName, price, description, updateMode, deleteItem}) => {
+const ItemCard = ({itemName, price, stock, description, updateMode, deleteItem}) => {
   return (
     <Card sx={{
       bgcolor: "#eef2f6",
@@ -17,7 +17,7 @@ const ItemCard = ({itemName, price, description, updateMode, deleteItem}) => {
       />
       <CardContent>
         <Typography variant="h6">
-        {itemName} (${price})
+        {itemName} (${price}) {stock}
         </Typography>
         <Typography variant="body2">
         {description}

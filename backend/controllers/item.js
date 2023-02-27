@@ -14,8 +14,8 @@ export const getItem = async (req, res) => {
 
 export const saveItem = async (req, res) => {
     try{
-        const { itemName, price, description } = req.body
-        Item.create({itemName, price, description}).then((data) => {
+        const { itemName, price, stock, description } = req.body
+        Item.create({itemName, price, description, stock}).then((data) => {
             console.log("Added successfully...");
             console.log(data);
             res.send(data);
@@ -29,8 +29,8 @@ export const saveItem = async (req, res) => {
 /* UPDATE */
 export const updateItem = async (req, res) => {
     try{
-        const { _id, itemName, price, description } = req.body
-        Item.findByIdAndUpdate({_id}, {itemName, price, description})
+        const { _id, itemName, price, stock, description } = req.body
+        Item.findByIdAndUpdate({_id}, {itemName, price, stock, description})
         .then((data) => {
             console.log("Updated successfully...");
             console.log(data);
