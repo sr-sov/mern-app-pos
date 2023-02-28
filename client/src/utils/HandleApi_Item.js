@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseURL = "http://localhost:3001"
+const baseURL = "https://bright-pavlova-63fb76.netlify.app:3001"
 
 export const getAllItem = (setItem) => {
     axios
