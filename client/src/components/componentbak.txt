@@ -1,0 +1,52 @@
+<TextField 
+label="Item" 
+variant="outlined" 
+type="text"
+value={itemName}
+onChange={handleItemNameChange}
+sx={{
+  gridColumn: "span 6"
+}}>
+
+</TextField>
+
+<TextField 
+label="Price" 
+variant="outlined" 
+type="number" 
+value={price}
+onChange={handlePriceChange}
+sx={{
+  gridColumn: "span 3"
+}}
+>
+
+</TextField>
+
+<TextField 
+label="Stock" 
+variant="outlined" 
+type="number" 
+value={stock}
+onChange={handleStockChange}
+sx={{
+  gridColumn: "span 3"
+}}
+>
+
+</TextField>
+
+<TextField 
+label="Item description here..." 
+multiline 
+rows={3}
+type="text"
+variant="outlined"
+value={description}
+onChange={handleDescriptionChange}
+sx={{
+  gridColumn: "span 6"
+}}
+>
+
+</TextField>
