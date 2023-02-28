@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import ItemCard from "./components/ItemCard";
-import "./index.css";
-import { addItem, deleteItem, getAllItem, updateItem } from "./utils/HandleApi_Item";
+import ItemCard from "./ItemCard";
+import "../index.css";
+import { addItem, deleteItem, getAllItem, updateItem } from "../utils/HandleApi_Item";
 import { AppBar, Box, Button, Container, CssBaseline, TextField, Toolbar, Typography, withTheme } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import { ItemForm } from "./components/ItemForm";
+import { ItemForm } from "./ItemForm";
 
 function App() {
 
@@ -45,6 +45,14 @@ function App() {
     setItemId(_id)
   }
 
+  const handleUpdateItem = () => {
+    updateItem(ItemId, itemName, price, stock, description, setItemName, setPrice, setStock, setDescription, setItems, setIsUpdating);
+  }
+
+  const handleAddItem = () => {
+    addItem(itemName, price, stock, description, setItemName, setPrice, setStock, setDescription, setItems);
+  }
+
   return (
     <>
     <CssBaseline />
@@ -64,20 +72,11 @@ function App() {
 
       <>
       <ItemForm 
-      itemName={itemName} price={price} stock={stock} description={description}handleItemNameChange={handleItemNameChange} handlePriceChange={handlePriceChange} handleStockChange={handleStockChange} handleDescriptionChange={handleDescriptionChange} 
+      itemName={itemName} price={price} stock={stock} description={description}handleItemNameChange={handleItemNameChange} handlePriceChange={handlePriceChange} handleStockChange={handleStockChange} handleDescriptionChange={handleDescriptionChange}
+      handleUpdateItem={handleUpdateItem}
+      handleAddItem={handleAddItem}
+      isUpdating={isUpdating}
       />
-
-      <div className="top">
-            <Button onClick={isUpdating ? 
-            () => updateItem(ItemId, itemName, price, stock, description, setItemName, setPrice, setStock, setDescription, setItems, setIsUpdating) 
-            : () => addItem(itemName, price, stock, description, setItemName, setPrice, setStock, setDescription, setItems)}>
-            {isUpdating ? 
-            <EditIcon />
-            :
-            <AddIcon />
-            }
-          </Button>
-        </div>
         
         <div className="List">
           {items.map((item) => 
