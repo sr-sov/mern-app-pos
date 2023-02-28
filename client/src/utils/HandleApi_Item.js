@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseURL = "https://bright-pavlova-63fb76.netlify.app:3001"
+const baseURL = "https://bizky-service.onrender.com"
 
 export const getAllItem = (setItem) => {
     axios
