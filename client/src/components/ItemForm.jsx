@@ -12,13 +12,13 @@ import { Controller } from "react-hook-form";
 export const ItemForm = ({itemName, price, stock, description, handleItemNameChange, handlePriceChange, handleStockChange, handleDescriptionChange, handleAddItem, handleUpdateItem, isUpdating}) => {
     
   const insertItem = useForm();
-  const { register, handleSubmit, reset, control } = useForm();
-  const onSubmit = (data: any) => console.log(data);
-
+  const { register, reset, control, formState: { errors }, handleSubmit } = useForm();
+  const onSubmit = data => console.log("HERE");
+  
+  
   return (
     <>
-    <form onSubmit={handleSubmit
-      ((data) => alert(JSON.stringify(data)))}>
+    <form onSubmit={handleSubmit(onSubmit)}>
     <Typography 
     variant="h1"
     sx={{
@@ -51,10 +51,13 @@ export const ItemForm = ({itemName, price, stock, description, handleItemNameCha
         variant="outlined" 
         type="text"
         value={itemName}
-        {...register('item')}
+        {...register('item',{
+        required: "Required field"
+        })}
+        error={!!errors?.item}
+        helperText={errors?.item ? errors.item.message : null
+        }
         onChange={handleItemNameChange}
-        error
-        helperText="some validation errors"
         sx={{
         gridColumn: "span 6"
         }}>
@@ -66,6 +69,13 @@ export const ItemForm = ({itemName, price, stock, description, handleItemNameCha
       label="Price" 
       variant="outlined" 
       type="number" 
+      {...register('price',{
+        required: "Required field"
+        })}
+        error={!!errors?.item}
+        helperText={errors?.item ? errors.item.message : null
+      }
+        onChange={handleItemNameChange}
       value={price}
       onChange={handlePriceChange}
       sx={{
@@ -79,6 +89,12 @@ export const ItemForm = ({itemName, price, stock, description, handleItemNameCha
       label="Stock" 
       variant="outlined" 
       type="number" 
+      {...register('stock',{
+        required: "Required field",
+        })}
+        error={!!errors?.item}
+        helperText={errors?.item ? errors.item.message : null
+      }
       value={stock}
       onChange={handleStockChange}
       sx={{
@@ -103,7 +119,9 @@ export const ItemForm = ({itemName, price, stock, description, handleItemNameCha
 
       </TextField>
 
-      <Button onClick={isUpdating ? 
+      <Button 
+      type="submit"
+      onClick={isUpdating ? 
       () => handleUpdateItem() 
       : () => handleAddItem()}
       sx={{
