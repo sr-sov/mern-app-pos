@@ -2,7 +2,7 @@
 
 ## Deployment
 ### Frontend
-https://bright-pavlova-63fb76.netlify.app/
+[Netlify](https://bright-pavlova-63fb76.netlify.app)
 
 ### Backend
-Render
+[Render](https://render.com)
